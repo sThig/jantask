@@ -10,7 +10,6 @@ gem 'jquery-rails'
 gem 'turbolinks', '~> 5'
 
 gem 'bootstrap', '~> 4.0.0.alpha3.1'
-gem 'bourbon', '~> 5.0.0.beta.6'
 
 group :development, :test do
   gem 'byebug', platform: :mri
