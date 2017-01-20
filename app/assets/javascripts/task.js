@@ -1,41 +1,33 @@
-// JS Task list
-// things to do finish:
-// 	shorten sentence if it’s long
-// smooth out the fonts
-// 	edit button should say “edit mode”
-
-//Problem: User interaction doesn't provide dseired results.
-//Solution: Add interactivity so the user can manage daily tasks.
-
 function setTitle() {
-  var titleEl = document.querySelector('[data-behavior=title]');
-  var title = localStorage.getItem("taskTitle");
+    var titleEl = document.querySelector('[data-behavior=title]');
+    var title = localStorage.getItem("taskTitle");
 
-  if (! title) return;
-  titleEl.innerText = title;
+    if (!title) return;
+    titleEl.innerText = title;
 }
 
 function setTasks() {
-  var taskListEl = document.querySelector('#incomplete-tasks');
-  var tasks = localStorage.getItem("tasks");
-  if (! tasks) return;
+    var taskListEl = document.querySelector('#incomplete-tasks');
+    var tasks = localStorage.getItem("tasks");
+    if (!tasks) return;
 
-  for (var i = 0; i < tasks.length; i++) {
-    var task = tasks[i];
-  }
+    for (var i = 0; i < tasks.length; i++) {
+        var task = tasks[i];
+    }
 }
 
 $(document).ready(function() {
+    var apiKey = 'j878g39yx378pa77djthzzpn';
 
-  setTitle();
+    setTitle();
 
-  setTasks();
-
-
+    setTasks();
     var taskInput = document.getElementById("new-task"); //new-task
     var addButton = document.getElementsByTagName("button")[0]; //first button
     var incompleteTaskHolder = document.getElementById("incomplete-tasks"); //incomplete-tasks
     var completedTasksHolder = document.getElementById("completed-tasks"); //completed-tasks
+
+
 
     // New Task List Item
     var createNewTaskElement = function(taskString) {
@@ -48,40 +40,45 @@ $(document).ready(function() {
             //input (text)
         var editInput = document.createElement("input")
             //button.edit
+        // var buttonContainer = document.createElement("div")
+        //     //open Div
+        // var buttons =
         var editButton = document.createElement("button");
         //button.delete
         var deleteButton = document.createElement("button");
+        //add in the image`
+        // buttonContainerEnd = document.createElement("/div")
 
-//my edit
+        //my edit
 
-function fadeIn(listItem) {
-  listItem.style.opacity = 0;
-  // listItem.style.backgroundColor = '#99C262';
+        function fadeIn(listItem) {
+            listItem.style.opacity = 0;
+            // listItem.style.backgroundColor = '#99C262';
 
 
-  var tick = function() {
-    listItem.style.opacity = +listItem.style.opacity + 0.05;
+            var tick = function() {
+                listItem.style.opacity = +listItem.style.opacity + 0.05;
 
-    if (+listItem.style.opacity < 1) {
-      (window.requestAnimationFrame && requestAnimationFrame(tick)) || setTimeout(tick, 16)
-    }
+                if (+listItem.style.opacity < 1) {
+                    (window.requestAnimationFrame && requestAnimationFrame(tick)) || setTimeout(tick, 16)
+                }
 
-  };
+            };
 
-  tick();
-  listItem.style.backgroundColor = 'hsl(75, 100%, 1%)';
-  var d = 1;
-  for(var i=75; i<=100; i=i+0.05){ //i represents the lightness
-      d  += 4.75;
-      (function(ii,dd){
-          setTimeout(function(){
-              listItem.style.backgroundColor = 'hsl(0, 100%, '+ii+'%)';
-          }, dd);
-      })(i,d);
-  }
-}
+            tick();
+            listItem.style.backgroundColor = 'hsl(75, 100%, 1%)';
+            var d = 1;
+            for (var i = 75; i <= 100; i = i + 0.05) { //i represents the lightness
+                d += 4.75;
+                (function(ii, dd) {
+                    setTimeout(function() {
+                        listItem.style.backgroundColor = 'hsl(220, 100%, ' + ii + '%)';
+                    }, dd);
+                })(i, d);
+            }
+        }
 
-fadeIn(listItem);
+        fadeIn(listItem);
 
 
         //Each element, need to be modified
@@ -100,58 +97,89 @@ fadeIn(listItem);
         // .className = "list-group-item";
         listItem.appendChild(label);
         listItem.appendChild(editInput);
+
+        // listItem.appendChild(buttonContainer)
+        //     .className = "button-set";
+
         listItem.appendChild(editButton)
-            .className = "btn btn-secondary edit btn-sm";
+            .className = "dynobuttons1 btn btn-secondary edit btn-sm";
         listItem.appendChild(deleteButton)
-            .className = "btn btn-secondary delete btn-sm";
+            .className = "dynobuttons2 btn btn-secondary delete btn-sm";
 
-
+      // buttonContainer.insertHTML(listItem.className("btn-secondary"))
+        // listItem.appendChild(image);
+// debugger
+//         $('.dynobuttons').wrap("<div class='button-set'></div>");
+//         // listItem.appendChild(object).html(innerHTML stuff)
 
         return listItem;
     }
 
-
     //Add a new task
-
     var addTask = function() {
         //Create a new list item with the text from #new-task:
         var listItem = createNewTaskElement(taskInput.value);
         var tasks = JSON.parse(localStorage.getItem("tasks"));
-        tasks.push(item);
+        var flickrValue = taskInput.value;
+
+                $.ajax({
+                        type: 'GET',
+                        url: "https://api.gettyimages.com/v3/search/images/creative?phrase=" + (flickrValue),
+                        beforeSend: function(request) {
+                            request.setRequestHeader("Api-Key", apiKey);
+                        }
+                    })
+
+                    .done(function(data) {
+                        console.log("Success with data")
+                        var image = data.images[0];
+                            $(listItem).append("<div class='img-placement image-cropper'><img class='img-round' src='" + data.images[i].display_sizes[0].uri + "'/></div>");
+                    })
+                    .fail(function(data) {
+                        alert(JSON.stringify(data, 2))
+                        console.log(data.images)
+
+                    });
 
         //Append listItem to incompleteTaskholder
         incompleteTaskHolder.appendChild(listItem)
             .className = "list-group-item";
         bindTaskEvents(listItem, taskCompleted);
-
+            $(".todo").css('visibility','visible');
         taskInput.value = "";
+        //
 
     }
 
-    //my edits
+    $('.add-button').attr('disabled', true);
 
 
-    $('.addButton').attr('disabled', true);
 
     $('#new-task').keyup(function() {
         if ($(this).val().length != 0)
-            $('.addButton').attr('disabled', false);
+            $('.add-button').attr('disabled', false).html("Adding...");
+
         else
-            $('.addButton').attr('disabled', true);
+            $('.add-button').attr('disabled', true);
     });
 
 
+    $('#new-task').keypress(function(e) {
+        if (e.which == 13) {
+            addButton.click();
+            return false; //<---- Add this line
+        }
+    });
 
+    $(".add-button").click(function() {
+        $(this).attr('disabled', 'disabled').html("Add");
 
-    $(".addButton").click(function() {
-        $(this).attr('disabled', 'disabled');
     });
 
     //Edit an existing task
     var editTask = function() {
         console.log("edit task...");
         var listItem = this.parentNode;
-
 
         var editInput = listItem.querySelector("input[type=text");
         var label = listItem.querySelector("label");
@@ -164,22 +192,20 @@ fadeIn(listItem);
             //label text become the input's value
             label.innerText = editInput.value
             this.classList.remove('btn-primary');
-  this.classList.add('btn-secondary');
+            this.classList.add('btn-secondary');
         } else {
             //Switch to .editMode
             //input value becomes the label' text
             editInput.value = label.innerText
             this.classList.remove('btn-secondary');
-  this.classList.add('btn-primary');
+            this.classList.add('btn-primary');
         }
         //Toggle .editMode on the list item
         listItem.classList.toggle("editMode");
-
     }
-
     //Delete an existing task
     var deleteTask = function() {
-        console.log("delete task...");
+
         var listItem = this.parentNode;
         var ul = listItem.parentNode;
         ul.removeChild(listItem);
@@ -192,6 +218,7 @@ fadeIn(listItem);
         var listItem = this.parentNode
         completedTasksHolder.appendChild(listItem);
         bindTaskEvents(listItem, taskIncomplete);
+        $(".completed").css('visibility','visible');
     }
 
     //Mark a task as Incomplete
@@ -200,10 +227,11 @@ fadeIn(listItem);
         var listItem = this.parentNode;
         incompleteTaskHolder.appendChild(listItem);
         bindTaskEvents(listItem, taskCompleted);
+        $(".completed").css('visibility','hidden');
     }
 
     var bindTaskEvents = function(taskListItem, checkBoxEventHandler) {
-        console.log("Bind list item events");
+        // console.log("Bind list item events");
         //select it's children
         var checkBox = taskListItem.querySelector("input[type=checkbox]");
         var editButton = taskListItem.querySelector("button.edit");
@@ -218,15 +246,13 @@ fadeIn(listItem);
         //bind taskCompleted to the checkbox
     }
 
-
     var ajaxRequest = function() {
-            console.log("AJAX request");
+            // console.log("AJAX request");
         }
         //Set the click handler to the addTask function
         //addButton.onclick = addTask;
     addButton.addEventListener("click", addTask);
     addButton.addEventListener("click", ajaxRequest);
-
 
     //cycle over incompleteTaskHolder ul list items
     for (var i = 0; i < incompleteTaskHolder.children.length; i++) {
