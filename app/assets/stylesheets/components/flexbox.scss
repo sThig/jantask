@@ -1,0 +1,128 @@
+@media only screen and (min-width: 400px) {
+  .container {
+    background: $secondary-bg;
+    border-radius: 4px;
+    box-shadow: 0 2px 46px 10px $seondary-bg-shadow;
+    display: block;
+    margin: 5% auto 0;
+    padding: 5%;
+    width: 70%;
+    background-size: 155%;
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    background-image: asset-url('clouds.svg');
+    margin-top: 5%;
+
+  }
+
+  .dynobuttons1 {
+    margin-left: 23%;
+}
+
+    .flex-container {
+        display: flex;
+        flex-direction: column;
+        // flex-wrap: wrap;
+        justify-content: space-around;
+    }
+
+    li > label {
+        margin-top: -4%;
+    }
+
+    .image-cropper {
+        border-radius: 50%;
+        margin-top: -22%;
+        float: right;
+        height: 25px;
+        overflow: hidden;
+        position: relative;
+        width: 25px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+  .container {
+    background: $secondary-bg;
+    border-radius: 4px;
+    box-shadow: 0 2px 46px 10px $seondary-bg-shadow;
+    display: block;
+    margin: 5% auto 0;
+    padding: 5%;
+    width: 70%;
+    background-size: 50%;
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    background-image: asset-url('clouds.svg');
+    margin-top: 5%;
+
+  }
+
+    .flex-container {
+        display: flex;
+        flex-direction: column;
+        // flex-wrap: wrap;
+        justify-content: space-around;
+    }
+
+    li > label {
+        margin-top: 1%;
+    }
+
+    .image-cropper {
+      border-radius: 50%;
+      float: right;
+      height: 50px;
+      margin-top: 0;
+      overflow: hidden;
+      position: relative;
+      width: 50px;
+    }
+
+    .dynobuttons1 {
+      margin-left: 15%;
+    }
+}
+
+@media only screen and (min-width: 1140px) {
+  .container {
+    background: $secondary-bg;
+    border-radius: 4px;
+    box-shadow: 0 2px 46px 10px $seondary-bg-shadow;
+    display: block;
+    margin: 5% auto 0;
+    padding: 5%;
+    width: 70%;
+    background-size: 50%;
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    background-image: asset-url('clouds.svg');
+    margin-top: 5%;
+
+  }
+
+    .flex-container {
+        display: flex;
+        flex-direction: column;
+        // flex-wrap: wrap;
+        justify-content: space-around;
+    }
+
+    li > label {
+        margin-top: 1%;
+    }
+
+    .image-cropper {
+      border-radius: 50%;
+      float: right;
+      height: 50px;
+      margin-top: 0;
+      overflow: hidden;
+      position: relative;
+      width: 50px;
+    }
+
+    .dynobuttons1 {
+      margin-left: 15%;
+    }
+}

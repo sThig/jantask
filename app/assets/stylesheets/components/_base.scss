@@ -1,3 +1,5 @@
+@import "flexbox";
+
 body {
   background: #FOF3F6;
   background: linear-gradient(90deg, #F0F3F6, #E5EEF4);
@@ -9,10 +11,19 @@ body {
   margin: 0;
 }
 
+hr {
+  border: 0;
+  clear:both;
+  display:block;
+  width: 96%;
+  background-color: $seondary-bg-shadow;
+  height: 1px;
+}
+
 h1 {
   color: $title-color;
   font-weight: bold;
-  margin-bottom: 5%;
+  margin-bottom: 1%;
 }
 
 h3,
@@ -76,7 +87,7 @@ li > label {
   // margin-top: 0;
   padding: 0 0 0 11px;
   width: 50%;
-  margin-top: 1%;
+  // margin-top: 1%;
 }
 
 li > input[type="text"] {
@@ -109,31 +120,31 @@ ul li.editMode label {
   display: none;
 }
 
-.container {
-  background: $secondary-bg;
-  border-radius: 4px;
-  box-shadow: 0 2px 46px 10px $seondary-bg-shadow;
-  display: block;
-  margin: 5% auto 0;
-  padding: 5%;
-  width: 70%;
-  background-size: 50%;
-  background-repeat: no-repeat;
-  background-position: bottom right;
-  background-image: asset-url('clouds.svg');
-  margin-top: 10%;
+// .container {
+//   background: $secondary-bg;
+//   border-radius: 4px;
+//   box-shadow: 0 2px 46px 10px $seondary-bg-shadow;
+//   display: block;
+//   margin: 5% auto 0;
+//   padding: 5%;
+//   width: 70%;
+//   background-size: 50%;
+//   background-repeat: no-repeat;
+//   background-position: bottom right;
+//   background-image: asset-url('clouds.svg');
+//   margin-top: 10%;
+//
+// }
 
-}
-
-.image-cropper {
-  border-radius: 50%;
-  float: right;
-  height: 50px;
-  // margin-top: -6%;
-  overflow: hidden;
-  position: relative;
-  width: 50px;
-}
+// .image-cropper {
+//   border-radius: 50%;
+//   float: right;
+//   height: 50px;
+//   // margin-top: -6%;
+//   overflow: hidden;
+//   position: relative;
+//   width: 50px;
+// }
 
 .img-round {
   display: inline;
@@ -192,6 +203,5 @@ ul li.editMode label {
  margin-top: 2%;
 }
 
-.dynobuttons1 {
-  margin-left: 15%;
+.addButton {height: 100%
 }
