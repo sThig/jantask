@@ -1,40 +1,5 @@
 <div class="container">
     <div class="flex-container">
-      <!-- <div class="flickrHold">
-        <ul id="photos">
-
-       </ul>
-      </div> -->
-      <div id="output"></div>
-    <h1 data-behavior="title">TASK LIST</h1>
-    <hr />
-    <p>
-        <label for="new-task">Add Item</label>
-
-        <div class="input-group">
-          <input maxlength="65" id="new-task" type="text" class="form-control" placeholder="Enter your item here...">
-          <span class="input-group-btn">
-            <button class="btn btn-secondary addButton" type="button" >Add</button>
-          </span>
-        </div>
-    </p>
-    <h3 class="todo">Todo</h3>
-    <ul class="list-group" id="incomplete-tasks">
-      <!-- <li class="list-group-item"><input type="checkbox">
-          <label>Pay Bills</label><input type="text">
-          <div class="button-set">
-            <button class="btn btn-secondary btn-sm edit">Edit</button>
-            <button class="btn btn-secondary btn-sm delete">Delete</button>
-          </div>
-          </li>
-      <li class="list-group-item"><input type="checkbox">
-          <label>Go Shopping</label><input type="text" value="Go Shopping">
-          <button class="btn btn-secondary btn-sm edit">Edit</button>
-          <button class="btn btn-secondary btn-sm delete">Delete</button></li> -->
-    </ul>
-
-    <h3 class="completed">Completed</h3>
-    <ul class="list-group" id="completed-tasks">
-    </ul>
-</div>
+      <%= render("shared/body") %>
+    </div>
 </div>
